@@ -29,7 +29,27 @@ bool dfs(vector<vector<char>>& board,string& word,int i,int j,int k)
          m=board.size();
          n=board[0].size();
 
-         
+         int count[256]={0};
+
+          for(int i=0;i<m;i++)
+        {
+            
+        for(int j=0;j<n;j++)
+        {
+            count[board[i][j]]++;
+            
+        }
+
+        }
+
+        for(int i=0;i<word.size();i++)
+        {
+            count[word[i]]--;
+
+            if(count[word[i]]<0)
+            return false;
+        }
+
 
         for(int i=0;i<m;i++)
         {
