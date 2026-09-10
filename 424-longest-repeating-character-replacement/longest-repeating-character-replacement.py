@@ -1,0 +1,21 @@
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+      count={}
+      left=0
+      max_freq=0
+      answer=0 
+
+      for right in range(len(s)):
+        count[s[right]]=count.get(s[right],0)+1
+        max_freq=max(max_freq,count[s[right]])
+        window_length=right-left+1 
+        replacement=window_length-max_freq 
+        while replacement>k:
+          count[s[left]]-=1
+          left+=1
+          window_length=right-left+1 
+          replacement=window_length-max_freq 
+
+        answer=max(answer,window_length)
+
+      return answer
